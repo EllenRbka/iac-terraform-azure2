@@ -1,10 +1,10 @@
-# Zasób azurerm_resource_group
+# azurerm_resource_group
 resource "azurerm_resource_group" "variables_rg" {
   name     = var.resource_group_name
   location = var.resource_group_location
 }
 
-# Zasób azurerm_storage_account
+# azurerm_storage_account
 resource "azurerm_storage_account" "variables_sa" {
   name                     = var.storage_account_name
   resource_group_name      = azurerm_resource_group.variables_rg.name
@@ -13,7 +13,7 @@ resource "azurerm_storage_account" "variables_sa" {
   account_replication_type = var.storage_account_replication_type
 }
 
-# Zasób azurerm_app_service_plan
+# azurerm_app_service_plan
 resource "azurerm_app_service_plan" "variables_asp" {
   name                = var.app_service_plan_name
   location            = azurerm_resource_group.variables_rg.location
@@ -27,7 +27,7 @@ resource "azurerm_app_service_plan" "variables_asp" {
   }
 }
 
-# Zasób azurerm_function_app
+# azurerm_function_app
 resource "azurerm_function_app" "variables_fa" {
   name                       = var.function_app_name
   location                   = azurerm_resource_group.variables_rg.location
@@ -37,7 +37,7 @@ resource "azurerm_function_app" "variables_fa" {
   storage_account_access_key = azurerm_storage_account.variables_sa.primary_access_key
 }
 
-# Zasób azurerm_function_app_function
+# azurerm_function_app_function
 resource "azurerm_function_app_function" "variables_faf" {
   name                        = "test_function"
   resource_group_name         = azurerm_resource_group.variables_rg.name
